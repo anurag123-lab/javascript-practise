@@ -132,6 +132,118 @@ button.addEventListener("click" , () =>{
 })
 
 
+// event delegation 
+// removing the button
 
 
-                          
+container.onclick = function(event) {
+
+      if (event.target.className != 'remove-button') return;
+
+      let pane = event.target.closest('.pane');
+      pane.remove();
+
+    };
+
+const remove = document.querySelector('#container');
+
+remove.addEventListener("click", (event) => {
+  if(event.target.className !== 'remove-button') return;
+
+  let hello = event.target.closest('.pane');
+  hello.remove();
+  });
+
+// asyncronous programming (callbacks, promises, async, await):
+
+// lets take an example of loading  a page 
+// let src = "hello.js"
+// function loadscript(src){
+//   const scriptt = document.createElement('script');
+//   scriptt.src = src
+//   document.head.append(scriptt);
+
+// }
+function newfunc(){
+  alert(`image loadeed succesfully`);
+
+}
+let src = "https://media.istockphoto.com/id/814423752/photo/eye-of-model-with-colorful-art-make-up-close-up.jpg?s=612x612&w=0&k=20&c=l15OdMWjgCKycMMShP8UK94ELVlEGvt7GmB_esHWPYE="
+function generator(src){
+  const img = document.createElement('img');
+  img.src= src
+  document.body.append(img)
+
+
+}
+generator();
+
+promises
+const promise = new Promise((resolve,reject) =>{
+  console.log("hello");
+  // resolve("succesfull")
+  reject("some error")
+
+
+});
+
+// small promise that resolves after 2 seconds and handle it with .then and .catch
+
+function hey1(){
+  return new Promise((resolve,reject)=>{
+    setTimeout(() =>{
+      console.log("hello");
+      resolve("succees");
+    }, 4000);
+  
+  });
+}
+
+function hey2(){
+  return new Promise((resolve,reject)=>{
+    setTimeout(() =>{
+      console.log("hello");
+      resolve("succees");
+    }, 4000);
+  
+  });
+}
+console.log(" fetching hey1 ....");
+hey1().then(() =>{
+  console.log("done it in 10sec");
+  hey2().then(() => {
+    
+  })
+
+});  
+// async function usage and the await keyword usage
+
+function hello(dataint){
+  return new Promise((resolve, reject) =>{
+    setTimeout(() =>{
+      console.log(dataint);
+      resolve(200);
+
+    },4000);
+  })
+}
+hello(2).then(() =>{
+  console.log("understood the promises");
+  hello(0).then(()=>{
+    alert("used the promise chain");
+  })
+
+})
+
+// now using the async and await to improve the code efficiency
+// IIFE function syntax
+// (fuction(){})();
+
+(async function() {
+  await hello(3);
+  await hello(alert("hello"));
+  await hello(4)
+  
+})();
+
+
